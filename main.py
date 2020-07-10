@@ -7,6 +7,7 @@ class Board:
     row_size=None
     col_size=None
     number_matrix=None
+    final_matrix=None
 
     def __init__(self, file):
         super().__init__()
@@ -22,7 +23,7 @@ class Board:
             self.temp_arr.append(temp)
 
         self.matrix = np.array(self.temp_arr)
-        print(self.matrix)
+        # print(self.matrix)
     
 
     def createNumberedMatrix(self):
@@ -37,14 +38,18 @@ class Board:
             low_x=high_x
 
         self.number_matrix=np.array(t)
-        print(self.number_matrix)
+        # print(self.number_matrix)
     
     def getElementFromMatrix(self, m, n):
         return self.matrix[m][n]
     
-    
+    def initFinalMat(self):
+        self.final_matrix=np.zeros((self.col_size*self.row_size, self.col_size*self.row_size))
+        print(self.final_matrix)
+        
 
 b = Board("smallMaze.lay")
 b.readFile()
 b.createNumberedMatrix()
-print("Element at (0,2): ",b.getElementFromMatrix(0,2))
+b.initFinalMat()
+# print("Element at (0,2): ",b.getElementFromMatrix(0,2))
