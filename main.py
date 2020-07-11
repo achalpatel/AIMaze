@@ -29,7 +29,7 @@ class Board:
             temp_arr.append(temp)
 
         self.matrix = np.array(temp_arr)
-        print(self.matrix)
+        # print(self.matrix)
     
 
     def createNumberedMatrix(self):
@@ -44,7 +44,7 @@ class Board:
             low_x=high_x
 
         self.number_matrix=np.array(t)
-        print(self.number_matrix)
+        # print(self.number_matrix)
     
     def getElementFromMatrix(self, m, n):
         try:
@@ -128,9 +128,11 @@ b.addValues()
 # end_ind = b.getEndPos()
 # print("start:", start_ind)
 # print("end ",end_ind)
-print(b.readAnswerMatrix("verySmallMatrix.txt"))
+# solution_mat = b.readAnswerMatrix("bigMatrix.txt")
+# result_mat = b.getOnesPos()
+# print(np.array_equal(solution_mat,result_mat))
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
-print(b.getOnesPos())
+
 
