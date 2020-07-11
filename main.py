@@ -1,7 +1,6 @@
 import numpy as np
 
 class Board:
-    temp_arr=[]
     matrix=None
     file=None
     row_size=None
@@ -9,20 +8,23 @@ class Board:
     number_matrix=None
     final_matrix=None
 
-    def __init__(self, file):
+    def __init__(self, file, char_obs, char_free):
         super().__init__()
         self.file=file
+        self.char_obstacle=char_obs
+        self.char_freeway=char_free
 
     def readFile(self):
+        temp_arr=[]
         f = open(self.file, "r")
         for line in f:
             temp = []
             for i in line:
                 if(i!="\n"):
                     temp.append(i)    
-            self.temp_arr.append(temp)
+            temp_arr.append(temp)
 
-        self.matrix = np.array(self.temp_arr)
+        self.matrix = np.array(temp_arr)
         print(self.matrix)
     
 
@@ -38,7 +40,7 @@ class Board:
             low_x=high_x
 
         self.number_matrix=np.array(t)
-        # print(self.number_matrix)
+        print(self.number_matrix)
     
     def getElementFromMatrix(self, m, n):
         try:
@@ -50,14 +52,19 @@ class Board:
     def initFinalMat(self):
         self.final_matrix=np.zeros((self.col_size*self.row_size, self.col_size*self.row_size))
 
-    # def addValues(self):
-    #     for i in range(0, self.row_size):
-    #         for j in range(0, self.col_size):
+    def addValues(self):
+        for i in range(0, self.row_size):
+            for j in range(0, self.col_size):
+                num = self.number_matrix[i][j]
+                char = self.matrix[i][j]
+                if(char!=self.char_obstacle):
+                    
                 
 
 
-b = Board("smallMaze.lay")
+b = Board("smallMaze.lay","%"," ")
 b.readFile()
 b.createNumberedMatrix()
 b.initFinalMat()
-print("Element at (0,-1): ",b.getElementFromMatrix(1,1))
+b.addValues()
+# print("Element at (0,-1): ",b.getElementFromMatrix(-2,-2))
