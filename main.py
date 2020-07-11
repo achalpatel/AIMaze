@@ -114,7 +114,7 @@ class Board:
             for j in range(0, ans_arr.shape[1]):
                 if(ans_arr[i][j]=='1'):
                     ones_list.append((i,j))
-        print(np.array(ones_list))
+        # print(np.array(ones_list))
         return ones_list
 
 
@@ -132,4 +132,5 @@ b.readAnswerMatrix("smallMatrix.txt")
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
-print(b.getOnesPos())
+b.getOnesPos()
+
