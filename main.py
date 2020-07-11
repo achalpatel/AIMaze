@@ -80,13 +80,41 @@ class Board:
         for i in range(0,self.row_size):
             for j in range(0, self.col_size):
                 if(self.matrix[i][j]==self.char_start):
-                    return (i,j)
+                    return self.number_matrix[i][j]
 
     def getEndPos(self):
         for i in range(0,self.row_size):
             for j in range(0, self.col_size):
                 if(self.matrix[i][j]==self.char_end):
-                    return (i,j)
+                    return self.number_matrix[i][j]
+
+    def searchDFS(self, startPos, endPos):
+        visited=[]
+        path=[]        
+        visited.append(startPos)
+        for i in range(0, self.final_matrix[startPos].shape[0]):
+            if(self.final_matrix[startPos][i] == 1 and i not in visited):
+                visited.append(i)
+                # print(visited)
+                if(self.search_rec(i, visited, path, endPos)):
+                    path.append(i)
+                    path.append(startPos)
+                    return path
+        
+
+    def search_rec(self, number, visited, path, endPos):
+        if(number==endPos):
+            return True
+        print(number, visited)
+        for i in range(0, self.final_matrix[number].shape[0]):
+            if(self.final_matrix[number][i] == 1 and (i not in visited)):
+                visited.append(i)
+                if(self.search_rec(i, visited, path, endPos)):
+                    path.append(i) 
+                    return True
+        
+        return False
+
         
     # Testing purpose
     def getOnesPos(self):
@@ -124,8 +152,10 @@ b.createNumberedMatrix()
 b.initFinalMat()
 b.addValues()
 # b.printFinalMatrix()
-# start_ind = b.getStartPos()
-# end_ind = b.getEndPos()
+start_ind = b.getStartPos()
+end_ind = b.getEndPos()
+print(start_ind, end_ind)
+
 # print("start:", start_ind)
 # print("end ",end_ind)
 # solution_mat = b.readAnswerMatrix("bigMatrix.txt")
@@ -134,5 +164,5 @@ b.addValues()
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
-
+print(b.searchDFS(start_ind, end_ind))
 
