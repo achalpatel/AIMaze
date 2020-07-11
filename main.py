@@ -114,11 +114,11 @@ class Board:
             for j in range(0, ans_arr.shape[1]):
                 if(ans_arr[i][j]=='1'):
                     ones_list.append((i,j))
-        # print(np.array(ones_list))
-        return ones_list
+        
+        return np.array(ones_list)
 
 
-b = Board("smallMaze.lay","%"," ", "P", ".")
+b = Board("verySmallMaze.lay","%"," ", "P", ".")
 b.readFile()
 b.createNumberedMatrix()
 b.initFinalMat()
@@ -128,9 +128,9 @@ b.addValues()
 # end_ind = b.getEndPos()
 # print("start:", start_ind)
 # print("end ",end_ind)
-b.readAnswerMatrix("smallMatrix.txt")
+print(b.readAnswerMatrix("verySmallMatrix.txt"))
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
 print("-----------------------------------------------------")
-b.getOnesPos()
+print(b.getOnesPos())
 
