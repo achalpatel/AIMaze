@@ -1,4 +1,6 @@
 import numpy as np
+import sys
+np.set_printoptions(threshold=sys.maxsize)
 
 class Board:
     matrix=None
@@ -31,7 +33,7 @@ class Board:
     def createNumberedMatrix(self):
         self.row_size=self.matrix.shape[0]
         self.col_size=self.matrix.shape[1]
-        low_x=1
+        low_x=0
         t=[]
         for i in range(0, self.row_size):
             high_x=low_x+self.col_size
@@ -58,13 +60,23 @@ class Board:
                 num = self.number_matrix[i][j]
                 char = self.matrix[i][j]
                 if(char!=self.char_obstacle):
-                    
-                
+                    if(i-1>=0 and self.matrix[i-1][j]!=self.char_obstacle):                       
+                       self.final_matrix[num][self.number_matrix[i-1][j]] = 1
+                    if(i+1<=self.row_size-1 and self.matrix[i+1][j]!=self.char_obstacle):                       
+                       self.final_matrix[num][self.number_matrix[i+1][j]] = 1
+                    if(j-1>=0 and self.matrix[i][j-1]!=self.char_obstacle):                       
+                       self.final_matrix[num][self.number_matrix[i][j-1]] = 1
+                    if(j+1<=self.col_size-1 and self.matrix[i][j+1]!=self.char_obstacle):                       
+                       self.final_matrix[num][self.number_matrix[i][j+1]] = 1
 
+    def printFinalMatrix(self):
+        for i in range(0, self.final_matrix.shape[0]):
+            print("index = ",i, self.final_matrix[i])
+                
 
 b = Board("smallMaze.lay","%"," ")
 b.readFile()
 b.createNumberedMatrix()
 b.initFinalMat()
 b.addValues()
-# print("Element at (0,-1): ",b.getElementFromMatrix(-2,-2))
+b.printFinalMatrix()
