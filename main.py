@@ -10,11 +10,13 @@ class Board:
     number_matrix=None
     final_matrix=None
 
-    def __init__(self, file, char_obs, char_free):
+    def __init__(self, file, char_obs, char_free, char_start, char_end):
         super().__init__()
         self.file=file
         self.char_obstacle=char_obs
         self.char_freeway=char_free
+        self.char_start=char_start
+        self.char_end=char_end
 
     def readFile(self):
         temp_arr=[]
@@ -72,11 +74,62 @@ class Board:
     def printFinalMatrix(self):
         for i in range(0, self.final_matrix.shape[0]):
             print("index = ",i, self.final_matrix[i])
-                
+    
 
-b = Board("smallMaze.lay","%"," ")
+    def getStartPos(self):
+        for i in range(0,self.row_size):
+            for j in range(0, self.col_size):
+                if(self.matrix[i][j]==self.char_start):
+                    return (i,j)
+
+    def getEndPos(self):
+        for i in range(0,self.row_size):
+            for j in range(0, self.col_size):
+                if(self.matrix[i][j]==self.char_end):
+                    return (i,j)
+        
+    # Testing purpose
+    def getOnesPos(self):
+        l=[]
+        for i in range(0, self.final_matrix.shape[0]):
+            for j in range(0, self.final_matrix.shape[1]):
+                if(self.final_matrix[i][j]==1):
+                    l.append((i,j))
+        return np.array(l)
+    
+    # Testing purpose
+    def readAnswerMatrix(self, file):
+        f = open(file, 'r')
+        arr=[]
+        for line in f:
+            temp=[]
+            for i in line:
+                if(i!="\n" and i!="\t"):
+                    temp.append(i)
+                td=list(temp)
+            arr.append(td)
+        ans_arr=np.array(arr)
+        ones_list=[]
+        for i in range(0,ans_arr.shape[0]):
+            for j in range(0, ans_arr.shape[1]):
+                if(ans_arr[i][j]=='1'):
+                    ones_list.append((i,j))
+        print(np.array(ones_list))
+        return ones_list
+
+
+b = Board("smallMaze.lay","%"," ", "P", ".")
 b.readFile()
 b.createNumberedMatrix()
 b.initFinalMat()
 b.addValues()
-b.printFinalMatrix()
+# b.printFinalMatrix()
+# start_ind = b.getStartPos()
+# end_ind = b.getEndPos()
+# print("start:", start_ind)
+# print("end ",end_ind)
+b.readAnswerMatrix("smallMatrix.txt")
+print("-----------------------------------------------------")
+print("-----------------------------------------------------")
+print("-----------------------------------------------------")
+print(b.getOnesPos())
