@@ -1,6 +1,8 @@
+# --------------------------------------------------------------------------------
 # Assignment 1
 # Name - Achal Patel
 # Student Id - 026598245
+# --------------------------------------------------------------------------------
 import numpy as np
 import sys
 np.set_printoptions(threshold=sys.maxsize)
@@ -13,7 +15,7 @@ class Board:
     number_matrix=None
     final_matrix=None
 
-    # Constructor initialized with the input file, Obstacle character, 
+    # Constructor initializes the input file, Obstacle character, 
     # free space character, Begin position character and the End position
     # character
     def __init__(self, file, char_obs, char_free, char_start, char_end):
@@ -86,12 +88,7 @@ class Board:
     # Prints the final output matrix
     def printFinalMatrix(self):
         for i in range(0, self.final_matrix.shape[0]):
-            print("index = ",i, self.final_matrix[i])
+            print(self.final_matrix[i])
 
 
-b = Board("verySmallMaze.lay","%"," ", "P", ".")
-b.readFile()
-b.createNumberedMatrix()
-b.initFinalMat()
-b.addValues()
-b.printFinalMatrix()
+
