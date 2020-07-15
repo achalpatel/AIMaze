@@ -91,4 +91,11 @@ class Board:
             print(self.final_matrix[i])
 
 
-
+# Provide the arguments (filename, obstacle character, free space character, starting point character,
+# goal point character)
+b = Board("verySmallMaze.lay","%"," ", "P", ".")
+b.readFile()
+b.createNumberedMatrix()
+b.initFinalMat()
+b.addValues()
+b.printFinalMatrix()
