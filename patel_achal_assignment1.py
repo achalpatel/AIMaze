@@ -1,7 +1,8 @@
 # --------------------------------------------------------------------------------
 # Assignment 1
-# Name - Achal Patel
-# Student Id - 026598245
+# Name - Achal Patel | Student Id - 026598245
+# Name - Kabir Majmudar | Student Id - 
+# 
 # --------------------------------------------------------------------------------
 import numpy as np
 import sys
