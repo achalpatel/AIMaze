@@ -1,7 +1,4 @@
-# AIMaze
+# AIMaze1
 Maze solution finding algorithm implementation
 
-Search ALgorithm used:
-1) A*
-2) BFS
-3) DFS
+Boiler plate implementation for Part 2
